@@ -1,4 +1,4 @@
-package com.skillstorm.project1test.controllers;
+package com.skillstorm.project1.controllers;
 
 import java.util.List;
 
@@ -12,43 +12,49 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skillstorm.project1test.models.Chocolate;
-import com.skillstorm.project1test.services.ChocolateService;
+import com.skillstorm.project1.models.Chocolate;
+import com.skillstorm.project1.models.Flavor;
+import com.skillstorm.project1.services.ChocolateService;
 
 @RestController
 @RequestMapping("/chocolate/v1")
 public class ChocolateController {
+	
+	//get all flavors (a flavor controller would be useful)
 	
 	//ask for one singleton instance of the chocolateService class
 	//field inject first
 	@Autowired
 	ChocolateService chocolateService;
 	
-	@GetMapping 
+	@GetMapping //retrieves all chocolates
 	public List<Chocolate> FindAll()
 	{
 		return chocolateService.findAll();
 				
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{id}") //retrieves a chocolate by its id
 	public Chocolate findById(@PathVariable int id)
 	{
 		return chocolateService.findById(id);
 	}
 	
-	@PostMapping
+	@PostMapping //create new chocolate
 	@ResponseStatus(code = HttpStatus.CREATED) 
-	public void create(@RequestBody Chocolate chocolate)
+	public ResponseEntity<Chocolate> create(@RequestBody Chocolate chocolate)
 	{
-		chocolateService.createChocolate(chocolate);
+		Chocolate createdChocolate = chocolateService.createChocolate(chocolate);
+		
+		return new ResponseEntity<>(createdChocolate,HttpStatus.CREATED);
 		
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/{id}") //edits an existing chocolate by its id
 	@ResponseStatus(code = HttpStatus.ACCEPTED)
 	public ResponseEntity<Chocolate> update(@RequestBody Chocolate chocolate, @PathVariable int id)
 	{
@@ -63,11 +69,24 @@ public class ChocolateController {
 		}
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{id}") //delete a chocolate by its id
 	@ResponseStatus(code = HttpStatus.ACCEPTED)
 	public void delete(@PathVariable int id)
 	{
 		chocolateService.delete(id);
+	}
+	
+	@GetMapping("/flavor") //getting all chocolates with the same flavor
+	public ResponseEntity<List<Chocolate>> findAllChocolatesByFlavor(@RequestParam("flavor") String flavor) //@RequestParam takes any queries after our path 
+																											//(anything after ? is stored within the @RequestParam parameters)
+	{
+		if(flavor != null)
+		{
+			return new ResponseEntity<>(chocolateService.findAllChocolatesByFlavor(flavor),HttpStatus.ACCEPTED);
+		} else
+		{
+			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+		}
 	}
 	
 

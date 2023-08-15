@@ -1,4 +1,4 @@
-package com.skillstorm.project1test;
+package com.skillstorm.project1;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
