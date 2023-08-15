@@ -15,21 +15,18 @@ import com.skillstorm.project1.models.Flavor;
 //the data type of the id
 @Repository
 public interface ChocolateRepository extends JpaRepository<Chocolate,Integer> {
-	
-	//Built-in CRUD methods
-	
-	//find all
-	
-	//find by id
-	
-	//create (save)
-	
-	//update (save)
-	
-	//deleteById
 		
-	//Custom methods
-	@Query("SELECT c FROM Chocolate c WHERE c.flavor.flavor = :flavor")
-	List<Chocolate> findByFlavor(@Param("flavor") String flavor);
+	
+	//find all chocolates that has quantity less than 20000
+	//since this is a primitive data type in the chocolate class, we only need to give the method the property's name, unlike the method below
+	@Query("SELECT FROM Chocolate c WHERE c.quantity <= :quantity")
+	List<Chocolate> findByQuantityLessThanEqual(@Param("quantity") long quantity);
+	
+	
+	//find all chocolates by flavor
+	//with classes, we need to specifiy both the name of the object instantiated in the Chocolate class followed by the name of the property we want
+	//in this case, the name of the object in the chocolate class is flavor and the property we need from the flavor object is name
+	@Query("SELECT FROM Chocolate c WHERE c.flavor.name = :flavorName")
+	List<Chocolate> findByFlavorName(@Param("flavorName") String flavorName);
 
 }

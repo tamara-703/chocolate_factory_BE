@@ -30,7 +30,7 @@ public class Chocolate {
 	@OneToOne //one chocolate has only one manufacturer
 	private Manufacturer manufacturer; //foreign key for manufacturer table
 
-	//indicate foreign key
+	//indicate foreign key & establish the relationship between the two tables 
 	@JoinColumn(name="flavor_id")
 	@ManyToOne //many chocolates can point to one flavor
 	private Flavor flavor; 

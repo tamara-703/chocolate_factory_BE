@@ -71,7 +71,7 @@ public class ChocolateService {
 	//custom methods
 	public List<Chocolate> findAllChocolatesByFlavor(String flavor)
 	{
-		return repo.findByFlavor(flavor);
+		return repo.findByFlavorName(flavor);
 	}
 
 }

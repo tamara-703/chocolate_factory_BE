@@ -1,11 +1,16 @@
 package com.skillstorm.project1.models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="manufacturer")
@@ -20,6 +25,10 @@ public class Manufacturer {
 	private String manufacturerAddress;
 	@Column(length=255, name="capacity")
 	private long capacity;
+	
+	@JsonBackReference
+	@OneToOne(mappedBy = "manufacturer")
+	List<Chocolate> chocolates;
 	
 	
 	public Manufacturer() {

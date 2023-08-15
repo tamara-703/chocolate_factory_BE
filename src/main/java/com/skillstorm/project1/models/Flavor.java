@@ -22,11 +22,11 @@ public class Flavor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment the id from the table
 	private int id;
 	@Column(length=255,name="flavors")
-	private String flavorName;
+	private String name;
 	//one flavor has many chocolates
 	
 	@JsonBackReference
-	@OneToMany
+	@OneToMany(mappedBy = "flavor")
 	Set<Chocolate> chocolates;
 	
 	
@@ -37,10 +37,10 @@ public class Flavor {
 	
 	
 
-	public Flavor(int id, String flavorName, Set<Chocolate> chocolates) {
+	public Flavor(int id, String name, Set<Chocolate> chocolates) {
 		super();
 		this.id = id;
-		this.flavorName = flavorName;
+		this.name = name;
 		this.chocolates = chocolates;
 	}
 
@@ -55,11 +55,11 @@ public class Flavor {
 	}
 
 	public String getFlavorName() {
-		return flavorName;
+		return name;
 	}
 
-	public void setFlavorName(String flavorName) {
-		this.flavorName = flavorName;
+	public void setFlavorName(String name) {
+		this.name = name;
 	}
 
 	public Set<Chocolate> getChocolates() {
@@ -77,7 +77,7 @@ public class Flavor {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((chocolates == null) ? 0 : chocolates.hashCode());
-		result = prime * result + ((flavorName == null) ? 0 : flavorName.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + id;
 		return result;
 	}
@@ -98,10 +98,10 @@ public class Flavor {
 				return false;
 		} else if (!chocolates.equals(other.chocolates))
 			return false;
-		if (flavorName == null) {
-			if (other.flavorName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!flavorName.equals(other.flavorName))
+		} else if (!name.equals(other.name))
 			return false;
 		if (id != other.id)
 			return false;
@@ -112,7 +112,7 @@ public class Flavor {
 
 	@Override
 	public String toString() {
-		return "Flavor [id=" + id + ", flavorName=" + flavorName + ", chocolates=" + chocolates + "]";
+		return "Flavor [id=" + id + ", flavorName=" + name + ", chocolates=" + chocolates + "]";
 	}
 
 	
