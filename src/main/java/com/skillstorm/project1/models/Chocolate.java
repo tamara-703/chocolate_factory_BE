@@ -20,7 +20,8 @@ public class Chocolate {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment the id from the table
-	private int id; //chocolate_id
+	@Column(name="chocolate_id")
+	private int id; 
 	@Column(length=255, name="brand_name")
 	private String brand_name; //brand_name
 	@Column(length=255, name="quantity")

@@ -3,12 +3,14 @@ package com.skillstorm.project1.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skillstorm.project1.models.Flavor;
 import com.skillstorm.project1.models.Manufacturer;
 import com.skillstorm.project1.repositories.FlavorRepository;
 import com.skillstorm.project1.repositories.ManufacturerRepository;
 
+@Service
 public class ManufacturerService {
 	
 	private ManufacturerRepository manufacturerRepo;

@@ -18,7 +18,7 @@ import com.skillstorm.project1.models.Flavor;
 import com.skillstorm.project1.services.FlavorService;
 
 @RestController
-@RequestMapping("/chocolate/v1/flavor")
+@RequestMapping("/flavor")
 public class FlavorController {
 	
 	@Autowired

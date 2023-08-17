@@ -3,10 +3,12 @@ package com.skillstorm.project1.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skillstorm.project1.models.Flavor;
 import com.skillstorm.project1.repositories.FlavorRepository;
 
+@Service
 public class FlavorService {
 	
 	private FlavorRepository flavorRepo;

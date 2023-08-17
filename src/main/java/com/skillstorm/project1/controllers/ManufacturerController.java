@@ -23,7 +23,7 @@ import com.skillstorm.project1.services.ChocolateService;
 import com.skillstorm.project1.services.ManufacturerService;
 
 @RestController
-@RequestMapping("/chocolate/v1/manufacturer")
+@RequestMapping("/manufacturer")
 public class ManufacturerController {
 	
 	@Autowired

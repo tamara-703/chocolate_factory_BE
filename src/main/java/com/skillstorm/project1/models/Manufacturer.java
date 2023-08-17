@@ -1,6 +1,7 @@
 package com.skillstorm.project1.models;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,25 +19,26 @@ public class Manufacturer {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name= "manufacturer_id")
 	private int id;
 	@Column(length=255, name="manufacturer")
 	private String manufacturer;
 	@Column(length=255, name="manufacturer_address")
 	private String manufacturerAddress;
-	@Column(length=255, name="capacity")
-	private long capacity;
+	@Column(name="capacity")
+	private int capacity;
 	
-	@JsonBackReference
-	@OneToOne(mappedBy = "manufacturer")
-	List<Chocolate> chocolates;
-	
-	
+//	@JsonBackReference
+//	@OneToOne
+//	Chocolate chocolate;
+
+
 	public Manufacturer() {
 		super();
 	}
 	
 	
-	public Manufacturer(int id, String manufacturer, String manufacturerAddress, long capacity) {
+	public Manufacturer(int id, String manufacturer, String manufacturerAddress, int capacity) {
 		super();
 		this.id = id;
 		this.manufacturer = manufacturer;
@@ -80,9 +82,18 @@ public class Manufacturer {
 	}
 
 
-	public void setCapacity(long capacity) {
+	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
+	
+//	public Chocolate getChocolate() {
+//		return chocolate;
+//	}
+//
+//
+//	public void setChocolate(Chocolate chocolate) {
+//		this.chocolate = chocolate;
+//	}
 
 
 	@Override

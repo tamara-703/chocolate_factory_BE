@@ -20,6 +20,7 @@ public class Flavor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment the id from the table
+	@Column(name= "flavor_id")
 	private int id;
 	@Column(length=255,name="flavors")
 	private String name;
@@ -37,7 +38,7 @@ public class Flavor {
 	
 	
 
-	public Flavor(int id, String name, Set<Chocolate> chocolates) {
+	public Flavor(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;

@@ -20,6 +20,9 @@ import com.skillstorm.project1.models.Chocolate;
 import com.skillstorm.project1.models.Flavor;
 import com.skillstorm.project1.services.ChocolateService;
 
+//@CrossOrigin("http://localhost:5001") //tells the backend that there are one or more local hosts running other than 8080 and connects 
+//this localhost to other localhosts that are running
+	//to have the backend ALL hosts available that are running on this pc, we use an *
 @RestController
 @RequestMapping("/chocolate/v1")
 public class ChocolateController {
