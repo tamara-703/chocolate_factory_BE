@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,18 +17,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skillstorm.project1.configurations.CorsConfig;
 import com.skillstorm.project1.models.Chocolate;
 import com.skillstorm.project1.models.Flavor;
 import com.skillstorm.project1.services.ChocolateService;
 
-//@CrossOrigin("http://localhost:5001") //tells the backend that there are one or more local hosts running other than 8080 and connects 
+@CrossOrigin("http://localhost:4200/") //tells the backend that there are one or more local hosts running other than 8080 and connects 
 //this localhost to other localhosts that are running
 	//to have the backend ALL hosts available that are running on this pc, we use an *
 @RestController
 @RequestMapping("/chocolate/v1")
 public class ChocolateController {
-	
-	//get all flavors (a flavor controller would be useful)
 	
 	//ask for one singleton instance of the chocolateService class
 	//field inject first
@@ -91,6 +91,19 @@ public class ChocolateController {
 			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 		}
 	}
+	
+//	@GetMapping //https:localhost:8080/chocolate/v1?page=1&size=10
+//	public ResponseEntity<List<Chocolate>> findAllWithLimit(@RequestParam("page") int page, @RequestParam("size") int size)
+//	{
+//		
+//		if(page != 0 && size != 0)
+//		{
+//			return new ResponseEntity<>(chocolateService.findAllWithLimit(page,size), HttpStatus.ACCEPTED);
+//		} else {
+//			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+//		}
+//		
+//	}
 	
 
 }

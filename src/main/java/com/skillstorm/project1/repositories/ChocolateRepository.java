@@ -1,5 +1,6 @@
 package com.skillstorm.project1.repositories;
 
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,8 @@ public interface ChocolateRepository extends JpaRepository<Chocolate,Integer> {
 	//in this case, the name of the object in the chocolate class is flavor and the property we need from the flavor object is name
 	@Query("SELECT FROM Chocolate c WHERE c.flavor.name = :flavorName")
 	List<Chocolate> findByFlavorName(@Param("flavorName") String flavorName);
+	
+//	@Query("SELECT c FROM Chocolate c") 
+//    List<Chocolate> findAllWithLimit(Pageable pageable);
 
 }

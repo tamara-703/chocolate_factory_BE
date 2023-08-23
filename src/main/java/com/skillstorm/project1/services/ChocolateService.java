@@ -1,16 +1,20 @@
 package com.skillstorm.project1.services;
 
 import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.skillstorm.project1.models.Chocolate;
 import com.skillstorm.project1.models.Flavor;
 import com.skillstorm.project1.repositories.ChocolateRepository;
+
+import org.springframework.data.domain.Pageable;
 
 @Service
 public class ChocolateService {
@@ -73,5 +77,12 @@ public class ChocolateService {
 	{
 		return repo.findByFlavorName(flavor);
 	}
+	
+//	public List<Chocolate> findAllWithLimit(int page, int size)
+//	{
+//		Pageable pageable = PageRequest.of(page, size);
+//		
+//		return repo.findAllWithLimit(pageable);
+//	}
 
 }

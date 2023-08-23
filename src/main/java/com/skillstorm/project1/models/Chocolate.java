@@ -1,5 +1,6 @@
 package com.skillstorm.project1.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class Chocolate {
 	private int quantity; //quantity
 	
 	@JoinColumn(name="manufacturer_id")
-	@OneToOne //one chocolate has only one manufacturer
+	@OneToOne (cascade = CascadeType.PERSIST)//one chocolate has only one manufacturer
 	private Manufacturer manufacturer; //foreign key for manufacturer table
 
 	//indicate foreign key & establish the relationship between the two tables 
