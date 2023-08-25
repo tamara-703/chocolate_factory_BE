@@ -36,10 +36,10 @@ public class ManufacturerController {
 				
 	}
 	
-	@GetMapping("/{id}") 
-	public Manufacturer findById(@PathVariable int id)
+	@GetMapping("/{manufacturer}") 
+	public Manufacturer findById(@PathVariable String manufacturer)
 	{
-		return manufacturerService.findById(id);
+		return manufacturerService.findByName(manufacturer);
 	}
 	
 	@PostMapping 
@@ -52,27 +52,26 @@ public class ManufacturerController {
 		
 	}
 	
-	@PutMapping("/{id}") 
-	@ResponseStatus(code = HttpStatus.ACCEPTED)
-	public ResponseEntity<Manufacturer> update(@RequestBody Manufacturer manufacturer, @PathVariable int id)
+	@PutMapping("/{name}") 
+	public ResponseEntity<Manufacturer> update(@RequestBody Manufacturer manufacturer, @PathVariable String name)
 	{
-		boolean status = manufacturerService.updateManufacturer(manufacturer, id);
+		boolean result = manufacturerService.updateManufacturer(manufacturer, name);
 		
-		if(status == true)
+		if(result == true)
 		{
 			return new ResponseEntity<>(HttpStatus.ACCEPTED);
 		} else
 		{
-			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	@DeleteMapping("/{id}") 
-	@ResponseStatus(code = HttpStatus.ACCEPTED)
-	public void delete(@PathVariable int id)
-	{
-		manufacturerService.deleteManufacturer(id);
-	}
+//	
+//	@DeleteMapping("/{id}") 
+//	@ResponseStatus(code = HttpStatus.ACCEPTED)
+//	public void delete(@PathVariable int id)
+//	{
+//		manufacturerService.deleteManufacturer(id);
+//	}
 	
 
 }

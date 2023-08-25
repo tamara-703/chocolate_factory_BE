@@ -74,9 +74,10 @@ public class ChocolateController {
 	
 	@DeleteMapping("/{id}") //delete a chocolate by its id
 	@ResponseStatus(code = HttpStatus.ACCEPTED)
-	public void delete(@PathVariable int id)
+	public int delete(@PathVariable int id)
 	{
 		chocolateService.delete(id);
+		return id;
 	}
 	
 	@GetMapping("/flavor") //getting all chocolates with the same flavor
