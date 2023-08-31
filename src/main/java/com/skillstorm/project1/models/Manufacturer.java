@@ -85,15 +85,6 @@ public class Manufacturer {
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
-	
-//	public Chocolate getChocolate() {
-//		return chocolate;
-//	}
-//
-//
-//	public void setChocolate(Chocolate chocolate) {
-//		this.chocolate = chocolate;
-//	}
 
 
 	@Override

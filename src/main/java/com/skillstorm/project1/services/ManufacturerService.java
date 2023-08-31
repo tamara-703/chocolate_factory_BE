@@ -26,9 +26,9 @@ public class ManufacturerService {
 		return manufacturerRepo.findAll();
 	}
 	
-	public Manufacturer findByName(String manufacturerName)
+	public Manufacturer findById(int id)
 	{
-		return manufacturerRepo.findByName(manufacturerName);
+		return manufacturerRepo.findById(id).get();
 	}
 	
 	public Manufacturer createManufacturer(Manufacturer manufacturer)
@@ -37,25 +37,25 @@ public class ManufacturerService {
 		return manufacturer;
 	}
 	
-	public boolean updateManufacturer(Manufacturer manufacturer, String manufacturerName)
+	public boolean updateManufacturer(Manufacturer manufacturer, int id)
 	{
 		@SuppressWarnings("deprecation")
-		Manufacturer manufacturerToUpdate = manufacturerRepo.findByName(manufacturerName);
+		int manufacturerToUpdate = manufacturerRepo.getById(id).getId();
 		
 		boolean status = false;
-		if(manufacturerToUpdate.getManufacturer().equals(manufacturerName))
+		
+		
+		if(manufacturerToUpdate != 0)
 		{
-			manufacturerRepo.save(manufacturer);
-			status = true;
+			if(manufacturerToUpdate == id)
+			{
+				manufacturerRepo.save(manufacturer);
+				status = true;
+			}
 		}
 		
 		return status;
 		
 	}
-//	
-//	public void deleteManufacturer(int id)
-//	{
-//		manufacturerRepo.deleteById(id); 
-//	}
-
+	
 }

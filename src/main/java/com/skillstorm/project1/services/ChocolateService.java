@@ -20,8 +20,7 @@ import org.springframework.data.domain.Pageable;
 public class ChocolateService {
 
 	private ChocolateRepository repo;
-	
-	//Connect to the repository that will give us our CRUD methods using Constructor injection
+
 	@Autowired
 	public ChocolateService(ChocolateRepository repo)
 	{
@@ -72,17 +71,10 @@ public class ChocolateService {
 		
 	}
 	
-	//custom methods
+	//custom method
 	public List<Chocolate> findAllChocolatesByFlavor(String flavor)
 	{
 		return repo.findByFlavorName(flavor);
 	}
-	
-//	public List<Chocolate> findAllWithLimit(int page, int size)
-//	{
-//		Pageable pageable = PageRequest.of(page, size);
-//		
-//		return repo.findAllWithLimit(pageable);
-//	}
 
 }

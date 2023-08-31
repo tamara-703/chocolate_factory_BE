@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import com.skillstorm.project1.models.Manufacturer;
 import com.skillstorm.project1.services.ChocolateService;
 import com.skillstorm.project1.services.ManufacturerService;
 
+@CrossOrigin("http://localhost:4200/")
 @RestController
 @RequestMapping("/manufacturer")
 public class ManufacturerController {
@@ -36,10 +38,26 @@ public class ManufacturerController {
 				
 	}
 	
-	@GetMapping("/{manufacturer}") 
-	public Manufacturer findById(@PathVariable String manufacturer)
+	@GetMapping("/{id}") 
+	public ResponseEntity<Manufacturer> findById(@PathVariable int id)
 	{
-		return manufacturerService.findByName(manufacturer);
+		return new ResponseEntity<>(manufacturerService.findById(id), HttpStatus.ACCEPTED);
+				
+	}
+	
+	@PutMapping ("/{id}") 
+	public ResponseEntity<Manufacturer> update(@RequestBody Manufacturer manufacturer, @PathVariable int id)
+	{
+		boolean result = manufacturerService.updateManufacturer(manufacturer,id);
+		
+		if(result == true)
+		{
+			return new ResponseEntity<Manufacturer>(HttpStatus.ACCEPTED);
+		} else
+		{
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+				
 	}
 	
 	@PostMapping 
@@ -51,27 +69,6 @@ public class ManufacturerController {
 		return new ResponseEntity<>(createdManufacturer,HttpStatus.CREATED);
 		
 	}
-	
-	@PutMapping("/{name}") 
-	public ResponseEntity<Manufacturer> update(@RequestBody Manufacturer manufacturer, @PathVariable String name)
-	{
-		boolean result = manufacturerService.updateManufacturer(manufacturer, name);
-		
-		if(result == true)
-		{
-			return new ResponseEntity<>(HttpStatus.ACCEPTED);
-		} else
-		{
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-	}
-//	
-//	@DeleteMapping("/{id}") 
-//	@ResponseStatus(code = HttpStatus.ACCEPTED)
-//	public void delete(@PathVariable int id)
-//	{
-//		manufacturerService.deleteManufacturer(id);
-//	}
 	
 
 }

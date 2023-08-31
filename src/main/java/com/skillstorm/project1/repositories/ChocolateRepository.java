@@ -19,18 +19,12 @@ public interface ChocolateRepository extends JpaRepository<Chocolate,Integer> {
 		
 	
 	//find all chocolates that has quantity less than 20000
-	//since this is a primitive data type in the chocolate class, we only need to give the method the property's name, unlike the method below
 	@Query("SELECT FROM Chocolate c WHERE c.quantity <= :quantity")
 	List<Chocolate> findByQuantityLessThanEqual(@Param("quantity") long quantity);
 	
 	
 	//find all chocolates by flavor
-	//with classes, we need to specifiy both the name of the object instantiated in the Chocolate class followed by the name of the property we want
-	//in this case, the name of the object in the chocolate class is flavor and the property we need from the flavor object is name
 	@Query("SELECT FROM Chocolate c WHERE c.flavor.name = :flavorName")
 	List<Chocolate> findByFlavorName(@Param("flavorName") String flavorName);
-	
-//	@Query("SELECT c FROM Chocolate c") 
-//    List<Chocolate> findAllWithLimit(Pageable pageable);
 
 }
